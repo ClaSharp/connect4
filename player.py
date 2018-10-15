@@ -1,20 +1,17 @@
 
-
 class Player:
     def __init__(self):
         self.name = self.get_name()
-        self.piece = piece
+        self.piece = self.get_name()
         
     def get_name(self):
-        name = input("What is your name?\n> ")
-        return name
+        self.name = input("What is your name?\n> ")
     
     def get_choice(self, Board):
-        row = width
+        self.piece = input("What shape would you like to use?\n1) '*'\n2) '^'\n> ")
         
 def main():
-    self.get_name()
-    self.get_choice()
+    Player()
     
 if __name__ == "__main__":
     main()
