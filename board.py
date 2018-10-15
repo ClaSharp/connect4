@@ -1,13 +1,21 @@
 class Board:
     def __init__(self,w,h):
-        self.h = h
-        self.w = w
+        self.height = h
+        self.width = w
         self.board = [[' '] * h for i in range(w)]
         self.border = [['--'] * w]
         self.num = [[' '] * w]
         
                 
     def place_piece(self, piece, column):
+        for row in range(self.height - 1, -1, -1):
+            if self.board[row][column - 1] == ' ':
+                self.board[row][column - 1] = piece
+                break
+        else:
+            raise ValueError('Invalid input')
+    
+    def check_win(self):
         pass
     
     def empty_board(self):
@@ -41,7 +49,9 @@ class Board:
             print()
     
 def main():
-    board = Board(3,3)
+    board = Board(7,6)
+    board.disp_board()
+    board.place_piece('x', 7)
     board.disp_board()
 
 if __name__ == "__main__":
