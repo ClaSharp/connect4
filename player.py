@@ -9,7 +9,10 @@ class Player:
     
     def get_choice(self,Board):
         choice = int(input(f"{self.name} pick a column.\n> "))
-        return choice
+        if 1 <= choice <= 7:
+            return choice
+        choice = int(input('Your choice is invalid. Please pick a number 1 - 7.\n> '))
+
     
 def main():
     p1 = Player('x')
