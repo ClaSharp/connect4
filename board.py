@@ -2,7 +2,7 @@ class Board:
     def __init__(self,w,h):
         self.height = h
         self.width = w
-        self.board = [[' '] * h for i in range(w)]
+        self.board = [[' '] * w for i in range(h)]
         self.border = [['--'] * w]
         self.num = [[' '] * w]
         
@@ -16,7 +16,14 @@ class Board:
             raise ValueError('Invalid input')
     
     def check_win(self):
-        pass
+        for i in range(self.height):
+            for j in range(self.width - 4):
+                if self.board[i][j] != ' ':
+                    ls = [self.board[i][j], self.board[i][j + 1], self.board[i][j + 2], self.board[i][j + 3]]
+                    for l in range(len(ls)):
+                        if ls[l] == ls[l + 1] and ls[l] == ls[l + 2] and ls[l] == ls[l + 3]:
+                            return True
+        return False
     
     def empty_board(self):
         for i in range(len(self.board)):
@@ -51,8 +58,12 @@ class Board:
 def main():
     board = Board(7,6)
     board.disp_board()
-    board.place_piece('x', 7)
+    board.place_piece('x', 1)
+    board.place_piece('x', 2)
+    board.place_piece('x', 3)
+    board.place_piece('x', 5)
     board.disp_board()
+    print(board.check_win())
 
 if __name__ == "__main__":
     # test code
