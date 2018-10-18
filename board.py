@@ -16,14 +16,24 @@ class Board:
             raise ValueError('Invalid input')
     
     def check_win(self):
+        l = 0
+        #Horizontal check
         for i in range(self.height):
             for j in range(self.width - 4):
                 if self.board[i][j] != ' ':
                     ls = [self.board[i][j], self.board[i][j + 1], self.board[i][j + 2], self.board[i][j + 3]]
-                    for l in range(len(ls)):
-                        if ls[l] == ls[l + 1] and ls[l] == ls[l + 2] and ls[l] == ls[l + 3]:
+                    if self.board[i][j] == self.board[i][j + 1] == self.board[i][j + 2] == self.board[i][j + 3]:
+                        return True
+        #Vertical check
+        for i in range(self.height):
+            for j in range(self.width - 3):
+                if self.board[i][j] != ' ':
+                    vs = [self.board[i][j], self.board[i + 1][j], self.board[i + 2][j], self.board[i + 3][j]]
+                    for c in range(len(vs)):
+                        if self.board[i][j] == self.board[i + 1][j] == self.board[i + 2][j] == self.board[i + 3][j]:
                             return True
         return False
+    
     
     def empty_board(self):
         for i in range(len(self.board)):
@@ -58,10 +68,16 @@ class Board:
 def main():
     board = Board(7,6)
     board.disp_board()
-    board.place_piece('x', 1)
+    board.place_piece('y', 2)
     board.place_piece('x', 2)
     board.place_piece('x', 3)
+    board.place_piece('y', 2)
+    board.place_piece('x', 3)
+    board.place_piece('y', 2)
+    board.place_piece('x', 4)
     board.place_piece('x', 5)
+    board.place_piece('x', 3)
+    board.place_piece('x', 3)
     board.disp_board()
     print(board.check_win())
 
