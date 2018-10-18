@@ -3,27 +3,25 @@ from players import Player
 
 class Game:
     def __init__(self):
-        self.Board = board
+        self.board = Board
         self.players = []
         self.players.append(Player(piece))
         self.choice = self.get_choice
         self.turn = 0
         
     def play_game(self):
-        Player()
         board.disp_board()
-        board.add_piece()
+        Player()
+        board.place_piece(self.choice)
         if board.check_win():
-            players[turn].wins()
+            print(f"{self.players[turn]} wins!")
+            return
+        if board.is_full():
+            empty_board()
             return
         turn = (turn + 1)% 2
-        if board.is_full():
-            draw
-            return
         
-
 def main():
-    Player()
     print("Welcome to Connect 4!")
     while True:
         play_game()
