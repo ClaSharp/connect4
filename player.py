@@ -8,10 +8,13 @@ class Player:
         return input("What is your name?\n> ")
     
     def get_choice(self,Board):
-        choice = int(input(f"{self.name} pick a column.\n> "))
-        if 1 <= choice <= 7:
-            return choice
-        choice = int(input('Your choice is invalid. Please pick a number 1 - 7.\n> '))
+        while True:
+            try:
+                choice = int(input(f"{self.name} pick a column.\n> "))
+                if 1 <= choice <= 7:
+                    return choice
+            except:
+                print('\nYour choice is invalid.')
 
     
 def main():
