@@ -1,30 +1,32 @@
 from board import Board
-from players import Player
+from player import Player
 
 class Game:
     def __init__(self):
-        self.board = Board
+        self.board = Board(7,6)
         self.players = []
-        self.players.append(Player(piece))
-        self.choice = self.get_choice
         self.turn = 0
         
     def play_game(self):
-        board.disp_board()
-        Player()
-        board.place_piece(self.choice)
-        if board.check_win():
-            print(f"{self.players[turn]} wins!")
-            return
-        if board.is_full():
-            empty_board()
-            return
-        turn = (turn + 1)% 2
+        self.players.append(Player('x'))
+        self.players.append(Player('o'))
+        while True:
+            self.board.disp_board()
+            choice = self.players[self.turn].get_choice(self.board)
+            self.board.add_piece(choice)
+            if self.board.check_win():
+                print(f"{self.players[self.turn]} wins!")
+                return
+            if self.board.is_full():
+                self.board.empty_board()
+                return
+            self.turn = (self.turn + 1)% 2
         
 def main():
     print("Welcome to Connect 4!")
+    game = Game()
     while True:
-        play_game()
+        game.play_game()
         if input("Play again?(y)es or (n)o.\n> ") == 'y':
             return True
         if input("Play again?(y)es or (n)o.\n> ") == 'n':
