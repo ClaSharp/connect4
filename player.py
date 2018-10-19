@@ -15,13 +15,13 @@ class Player:
                     return choice
             except:
                 print('\nYour choice is invalid.')
-
-    
-def main():
-    p1 = Player('x')
-    p1.get_choice(7)
-    p2 = Player('o')
-    p2.get_choice(7)
-    
-if __name__ == "__main__":
-    main()
+#
+#    
+#def main():
+#    p1 = Player('x')
+#    p1.get_choice(7)
+#    p2 = Player('o')
+#    p2.get_choice(7)
+#    
+#if __name__ == "__main__":
+#    main()
