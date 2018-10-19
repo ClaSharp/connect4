@@ -5,9 +5,11 @@ class Board:
         self.board = [[' '] * w for i in range(h)]
         self.border = [['--'] * w]
         self.num = [[' '] * w]
-        
-                
+           
     def add_piece(self, column, piece):
+        '''Adds a piece to a chosen column and returns errors
+           for an invalid column and for when it is full
+        '''
         if column > self.width or column == 0:
             raise ValueError('Invalid Column')
         
@@ -19,11 +21,15 @@ class Board:
             raise ValueError('Column Full')
     
     def check_win(self):
+        '''Checks for a 4 in a row for the horizontal line
+           vertical line and diagonal major and minor.
+           Returns a true or false
+        '''
         #Horizontal check
         for i in range(self.height):
             for j in range(self.width - 4):
                 if self.board[i][j] != ' ':
-                    ls = [self.board[i][j], self.board[i][j + 1], self.board[i][j + 2], self.board[i][j + 3]]
+#                   ls = [self.board[i][j], self.board[i][j + 1], self.board[i][j + 2], self.board[i][j + 3]]
                     if self.board[i][j] == self.board[i][j + 1] == self.board[i][j + 2] == self.board[i][j + 3]:
                         return True
         #Vertical check
@@ -43,18 +49,24 @@ class Board:
                         return True
         #Minor Diagonal check
         for i in range(self.height - 3, -1, -1):
-            for j in range(self.width - 4, -1, -1):
+            for j in range(self.width - 4):
                 if self.board[i][j] != ' ':
-                    pass
+                    if self.board[i][j] == self.board[i - 1][j + 1] == self.board[i - 2][j + 2] == self.board[i - 3][j + 3]:
+                        return True
         return False
     
     
     def empty_board(self):
+        '''Empties the board completely to empty strings
+           returns nothing
+        '''
         for i in range(len(self.board)):
             for j in range(len(self.board[i])):
                 self.board[i][j] = ' '
                 
     def disp_board(self):
+        '''Prints the current board
+        '''
         for row in self.border:
             for element in row:
                 print(element,end='')
@@ -80,6 +92,9 @@ class Board:
             print()
         
     def is_full(self):
+        '''Checks if the board is full
+           Returns True if true and false if it is not full
+        '''
         for i in range(len(self.board)):
             for j in range(len(self.board[i])):
                 if self.board[i][j] != ' ':
@@ -89,16 +104,17 @@ class Board:
 def main():
     new_board = Board(7,6)
     new_board.add_piece(1,'x')
-    new_board.add_piece(1,'x')
-    new_board.add_piece(1,'x')
-    new_board.add_piece(1,'o')
-    new_board.add_piece(2,'x')
-    new_board.add_piece(2,'x')
     new_board.add_piece(2,'o')
-    new_board.add_piece(3,'x')
+    new_board.add_piece(2,'x')
     new_board.add_piece(3,'o')
+    new_board.add_piece(3,'o')
+    new_board.add_piece(3,'x')
+    new_board.add_piece(4,'x')
     new_board.add_piece(4,'o')
+    new_board.add_piece(4,'o')
+    new_board.add_piece(4,'x')
     new_board.disp_board()
+    print(new_board.check_win())
 
 if __name__ == "__main__":
     # test code
