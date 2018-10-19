@@ -21,8 +21,8 @@ class Board:
             raise ValueError('Column Full')
     
     def check_win(self):
-        '''Checks for a 4 in a row for the horizontal line
-           vertical line and diagonal major and minor.
+        '''Checks for a 4 in a row for the horizontal line,
+           vertical line, and diagonals: major and minor.
            Returns a true or false
         '''
         #Horizontal check
@@ -48,7 +48,7 @@ class Board:
                     if self.board[i][j] == self.board[i + 1][j + 1] == self.board[i + 2][j + 2] == self.board[i + 3][j + 3]:
                         return True
         #Minor Diagonal check
-        for i in range(self.height - 3, -1, -1):
+        for i in range(3, self.height):
             for j in range(self.width - 4):
                 if self.board[i][j] != ' ':
                     if self.board[i][j] == self.board[i - 1][j + 1] == self.board[i - 2][j + 2] == self.board[i - 3][j + 3]:
