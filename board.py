@@ -8,12 +8,15 @@ class Board:
         
                 
     def add_piece(self, column, piece):
+        if column > self.width or column == 0:
+            raise ValueError('Invalid Column')
+        
         for row in range(self.height - 1, -1, -1):
             if self.board[row][column - 1] == ' ':
                 self.board[row][column - 1] = piece
                 break
         else:
-            raise ValueError('Invalid input')
+            raise ValueError('Column Full')
     
     def check_win(self):
         #Horizontal check
@@ -38,6 +41,11 @@ class Board:
 #                    for c in range(len(mds)): 
                     if self.board[i][j] == self.board[i + 1][j + 1] == self.board[i + 2][j + 2] == self.board[i + 3][j + 3]:
                         return True
+        #Minor Diagonal check
+        for i in range(self.height - 3, -1, -1):
+            for j in range(self.width - 4, -1, -1):
+                if self.board[i][j] != ' ':
+                    pass
         return False
     
     
@@ -79,28 +87,18 @@ class Board:
         return False
     
 def main():
-#    board = Board(7,6)
-#    board.place_piece('y', 2)
-#    board.place_piece('x', 2)
-#    board.place_piece('x', 3)
-#    board.place_piece('y', 2)
-#    board.place_piece('x', 4)
-#    board.place_piece('x', 7)
-#    board.place_piece('x', 4)
-#    board.place_piece('x', 5)
-#    board.place_piece('x', 3)
-#    board.place_piece('x', 3)
-#    board.place_piece('y', 2)
-#    board.place_piece('y', 2)
-#    board.place_piece('y', 3)
-#    board.place_piece('y', 4)
-#    board.place_piece('y', 5)
-#    board.disp_board()
-#    print(board.check_win())
     new_board = Board(7,6)
-    for i in range(7):
-         for j in range(6):
-             new_board.add_piece(i+1,'x')
+    new_board.add_piece(1,'x')
+    new_board.add_piece(1,'x')
+    new_board.add_piece(1,'x')
+    new_board.add_piece(1,'o')
+    new_board.add_piece(2,'x')
+    new_board.add_piece(2,'x')
+    new_board.add_piece(2,'o')
+    new_board.add_piece(3,'x')
+    new_board.add_piece(3,'o')
+    new_board.add_piece(4,'o')
+    new_board.disp_board()
 
 if __name__ == "__main__":
     # test code
