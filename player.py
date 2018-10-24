@@ -11,7 +11,7 @@ class Player:
         while True:
             try:
                 choice = int(input(f"{self.name} pick a column.\n> "))
-                if 1 <= choice <= 7:
+                if 1 <= choice <= 7:  # what if the board is larger/smaller?
                     return choice
             except:
                 print('\nYour choice is invalid.')

@@ -10,7 +10,7 @@ class Board:
         '''Adds a piece to a chosen column and returns errors
            for an invalid column and for when it is full
         '''
-        if column > self.width or column == 0:
+        if column > self.width or column == 0: #what about negative columns
             raise ValueError('Invalid Column')
         
         for row in range(self.height - 1, -1, -1):
@@ -27,7 +27,7 @@ class Board:
         '''
         #Horizontal check
         for i in range(self.height):
-            for j in range(self.width - 4):
+            for j in range(self.width - 4) # missing last column:
                 if self.board[i][j] != ' ':
 #                   ls = [self.board[i][j], self.board[i][j + 1], self.board[i][j + 2], self.board[i][j + 3]]
                     if self.board[i][j] == self.board[i][j + 1] == self.board[i][j + 2] == self.board[i][j + 3]:
@@ -41,7 +41,7 @@ class Board:
                         return True
         #Major Diagonal check
         for i in range(self.height - 3):
-            for j in range(self.width - 4):
+            for j in range(self.width - 4) # missing last column:
                 if self.board[i][j] != ' ':
 #                    mds = [self.board[i][j], self.board[i + 1][j + 1], self.board[i + 2][j + 2], self.board[i + 3][j + 3]]
 #                    for c in range(len(mds)): 
@@ -49,7 +49,7 @@ class Board:
                         return True
         #Minor Diagonal check
         for i in range(3, self.height):
-            for j in range(self.width - 4):
+            for j in range(self.width - 4) # missing last column:
                 if self.board[i][j] != ' ':
                     if self.board[i][j] == self.board[i - 1][j + 1] == self.board[i - 2][j + 2] == self.board[i - 3][j + 3]:
                         return True
@@ -103,13 +103,13 @@ class Board:
     
 def main():
     new_board = Board(7,6)
-    new_board.add_piece(1,'x')
-    new_board.add_piece(2,'o')
-    new_board.add_piece(2,'x')
-    new_board.add_piece(3,'o')
-    new_board.add_piece(3,'o')
-    new_board.add_piece(3,'x')
     new_board.add_piece(4,'x')
+    new_board.add_piece(2,'o')
+    new_board.add_piece(5,'x')
+    new_board.add_piece(3,'o')
+    new_board.add_piece(3,'o')
+    new_board.add_piece(6,'x')
+    new_board.add_piece(7,'x')
     new_board.add_piece(4,'o')
     new_board.add_piece(4,'o')
     new_board.add_piece(4,'x')
