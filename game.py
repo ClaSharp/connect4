@@ -13,7 +13,7 @@ class Game:
         while True:
             self.board.disp_board()
             choice = self.players[self.turn].get_choice(self.board)
-            self.board.add_piece(choice)
+            self.board.add_piece(choice)  # add_piece has 2 parameters
             if self.board.check_win():
                 print(f"{self.players[self.turn]} wins!")
                 return
